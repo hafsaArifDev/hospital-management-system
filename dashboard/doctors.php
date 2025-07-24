@@ -10,9 +10,9 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'doctor') {
 
 // Fetch doctor data
 $doctor_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM doctors WHERE id = $doctor_id";
-$result = mysqli_query($conn, $sql);
-$doctor = mysqli_fetch_assoc($result);
+$stmt = $conn->prepare("SELECT * FROM doctors WHERE id = :id");
+$stmt->execute([':id' => $doctor_id]);
+$doctor = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@ $doctor = mysqli_fetch_assoc($result);
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <h2>Welcome, Dr. <?php echo htmlspecialchars($doctor['name']); ?> 👨‍⚕️</h2>
+    <h2>Welcome, Dr. <?php echo htmlspecialchars($doctor['name']); ?> </h2>
     <p><strong>Specialization:</strong> <?php echo htmlspecialchars($doctor['specialization']); ?></p>
     <p><strong>Email:</strong> <?php echo htmlspecialchars($doctor['email']); ?></p>
 

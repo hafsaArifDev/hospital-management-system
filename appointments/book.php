@@ -15,17 +15,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $appointment_date = $_POST['appointment_date'];
     $reason = $_POST['reason'];
 
-    $query = "INSERT INTO appointments (patient_id, doctor_id, appointment_date, reason) 
-              VALUES ('$patient_id', '$doctor_id', '$appointment_date', '$reason')";
-    if (mysqli_query($conn, $query)) {
+    try {
+        $stmt = $conn->prepare("INSERT INTO appointments (patient_id, doctor_id, appointment_date, reason) 
+                                VALUES (:patient_id, :doctor_id, :appointment_date, :reason)");
+        $stmt->execute([
+            ':patient_id' => $patient_id,
+            ':doctor_id' => $doctor_id,
+            ':appointment_date' => $appointment_date,
+            ':reason' => $reason
+        ]);
         $success = "Appointment booked successfully!";
-    } else {
-        $error = "Error booking appointment: " . mysqli_error($conn);
+    } catch (PDOException $e) {
+        $error = "Error booking appointment: " . $e->getMessage();
     }
 }
 
 // Fetch all doctors for dropdown
-$doctors = mysqli_query($conn, "SELECT id, name FROM doctors");
+$stmt = $conn->prepare("SELECT id, name FROM doctors");
+$stmt->execute();
+$doctors = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +52,7 @@ $doctors = mysqli_query($conn, "SELECT id, name FROM doctors");
         <label for="doctor_id">Select Doctor:</label>
         <select name="doctor_id" required>
             <option value="">--Choose--</option>
-            <?php while ($row = mysqli_fetch_assoc($doctors)) { ?>
+            <?php foreach ($doctors as $row) { ?>
                 <option value="<?= $row['id']; ?>"><?= $row['name']; ?></option>
             <?php } ?>
         </select><br><br>
@@ -53,4 +61,9 @@ $doctors = mysqli_query($conn, "SELECT id, name FROM doctors");
         <input type="date" name="appointment_date" required><br><br>
 
         <label for="reason">Reason:</label><br>
-        <textarea name="reason" rows="
+        <textarea name="reason" rows="4" cols="40" required></textarea><br><br>
+
+        <input type="submit" value="Book Appointment">
+    </form>
+</body>
+</html>

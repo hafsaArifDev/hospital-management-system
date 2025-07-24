@@ -1,18 +1,18 @@
-<?php
+<?php 
 session_start();
 include '../config/db.php';
 
-// Check if user is logged in and is a patient
+// ✅ سیشن چیک
 if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'patient') {
     header('Location: ../login.php');
     exit();
 }
 
-// Fetch user data
+// ✅ ڈیٹا لوڈ کرنا
 $patient_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM patients WHERE id = $patient_id";
-$result = mysqli_query($conn, $sql);
-$patient = mysqli_fetch_assoc($result);
+$stmt = $conn->prepare("SELECT * FROM patients WHERE id = ?");
+$stmt->execute([$patient_id]);
+$patient = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -31,8 +31,8 @@ $patient = mysqli_fetch_assoc($result);
     <ul>
         <li><a href="../appointments/book.php">📅 Book Appointment</a></li>
         <li><a href="../appointments/view.php">🗂 View Appointments</a></li>
-        <li><a href="../prescriptions/view.php">💊 View Prescriptions</a></li>
-        <li><a href="../logout.php">🚪 Logout</a></li>
+        <li><a href="../prescription/view.php">💊 View Prescriptions</a></li>
+        <li><a href="../login.php">🚪 Logout</a></li>
     </ul>
 </body>
 </html>

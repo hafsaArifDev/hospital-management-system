@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    // Query preparation
     if ($user_type === "patient") {
         $stmt = $conn->prepare("SELECT * FROM patients WHERE email = ?");
     } elseif ($user_type === "doctor") {
@@ -21,12 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_type'] = $user_type;
+        $_SESSION['user_role'] = $user_type; // ✅ اب user_role بھی سیٹ کیا جا رہا ہے
 
-        // Redirect to respective dashboard
+        // ✅ متعلقہ ڈیش بورڈ پر ری ڈائریکٹ کریں
         if ($user_type === "patient") {
-            header("Location: dashboard/patient.php");
+            header("Location: dashboard/patients.php");
         } elseif ($user_type === "doctor") {
-            header("Location: dashboard/doctor.php");
+            header("Location: dashboard/doctors.php");
         } else {
             header("Location: dashboard/admin.php");
         }
