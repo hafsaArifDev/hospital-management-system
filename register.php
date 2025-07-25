@@ -14,7 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($stmt->execute([$name, $email, $password])) {
-        echo "Registration successful!";
+         header("Location: login.php");
+        // echo "Registration successful!";
     } else {
         echo "Error occurred during registration.";
     }

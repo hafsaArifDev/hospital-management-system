@@ -31,7 +31,7 @@ $doctor = $stmt->fetch(PDO::FETCH_ASSOC);
     <h3>Actions</h3>
     <ul>
         <li><a href="../appointments/view.php">📋 View My Appointments</a></li>
-        <li><a href="../prescriptions/view.php">💊 Manage Prescriptions</a></li>
+        <li><a href="../prescription/view.php">💊 Manage Prescriptions</a></li>
         <li><a href="../logout.php">🚪 Logout</a></li>
     </ul>
 </body>

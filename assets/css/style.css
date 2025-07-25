@@ -110,3 +110,181 @@ footer {
     text-align: center;
     margin-top: 40px;
 }
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Light background for the rest of the page */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styling (Based on your provided screenshot, to ensure it looks similar) */
+.header {
+    background-color: #007bff; /* Bright blue from your header screenshot */
+    color: white;
+    padding: 15px 0; /* Adjusted padding for better fit */
+    text-align: center; /* Center content in the header */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10; /* Ensure header is on top */
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between; /* Space out title and nav */
+    align-items: center;
+    max-width: 1200px; /* Adjust max width as needed */
+    margin: 0 auto;
+    padding: 0 20px; /* Padding inside the container */
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.header .logo img {
+    height: 30px; /* Adjust logo size */
+    margin-right: 10px;
+}
+
+.header .logo h1 {
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.header nav ul li {
+    margin-left: 25px; /* Spacing between nav items */
+}
+
+.header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.header nav ul li a:hover {
+    color: #e2e6ea; /* Lighter white on hover */
+}
+
+/* Hero Section Styles */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 550px; /* Adjust height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Important for background image containment */
+    color: white; /* Default text color for content over image */
+    text-align: center;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Replace 'path/to/your/hero-image.jpg' with a high-quality image of doctors/hospital */
+    /* Example placeholder: A team of doctors smiling, or a modern hospital interior */
+    background-image: url('https://via.placeholder.com/1920x550/007bff/ffffff?text=Professional+Medical+Team'); /* Placeholder, replace with real image! */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(60%); /* Darken the image slightly to make text more readable */
+    z-index: 1; /* Place behind the content overlay */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Ensure content is on top of the darkened background */
+    background-color: rgba(0, 0, 0, 0.45); /* Semi-transparent dark overlay for readability */
+    padding: 40px 60px;
+    border-radius: 10px;
+    max-width: 900px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content h2 {
+    font-size: 3.2em;
+    margin-bottom: 20px;
+    color: white;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    color: #e0e0e0;
+}
+
+.how-to-use {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border for contrast */
+    text-align: left;
+}
+
+.how-to-use h3 {
+    color: white; /* White for heading */
+    margin-bottom: 20px;
+    font-size: 2em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.how-to-use ul {
+    list-style: none;
+    padding: 0;
+}
+
+.how-to-use ul li {
+    background-color: rgba(255, 255, 255, 0.15); /* Very subtle white background for list items */
+    border-left: 5px solid #28a745; /* A medical green for highlights */
+    margin-bottom: 12px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 1.05em;
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.how-to-use ul li:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.how-to-use ul li strong {
+    color: #fff0b3; /* A soft yellow for emphasis */
+}
+
+.how-to-use a {
+    color: #87ceeb; /* Sky blue for links */
+    text-decoration: underline;
+}
+
+.how-to-use a:hover {
+    color: #add8e6;
+}
+
+/* Footer Styling (assuming it's in includes/footer.php) */
+.footer {
+    background-color: #212529; /* Darker footer */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}

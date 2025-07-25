@@ -25,6 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ':reason' => $reason
         ]);
         $success = "Appointment booked successfully!";
+         header('Location:view.php');
+
+        
     } catch (PDOException $e) {
         $error = "Error booking appointment: " . $e->getMessage();
     }
