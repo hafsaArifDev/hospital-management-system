@@ -8,7 +8,9 @@
     <title>index.php</title>
     <style>
         .main-section{
-    background-color: rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+    background-color: #efefef;
     height: 200px;
     width: 100%;
     margin: 0px;
@@ -26,6 +28,16 @@
 p{
      text-align: center;
     
+}
+.hero-section{
+    display: flex;
+    flex-direction: row;
+    color: #3498db;
+}
+.image{
+ height: 100%;
+ width: 100%;
+ padding-left: 400px;
 }
 .sec3{
             display: flex;
@@ -79,10 +91,14 @@ p{
     </style>
 </head>
 <body class="main-section">
-  
+  <div class="hero-section">
 <h1 class="heading">Welcome to Hospital Management System</h1>
 <div class="img"></div>
 <p>This system allows patients to book appointments, doctors to manage prescriptions, and admins to control all activities.</p>
+<div class="image">
+    <img src="images/doctor.jpg" alt="image">
+</div>
+</div>
 <div class="sec3">
         <div class="divs">
             <i class="fa fa-envelope"></i>
